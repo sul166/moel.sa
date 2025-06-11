@@ -1,0 +1,244 @@
+{% extends "base.html" %}
+
+{% block title %}تواصل معنا - موئل للتمثيل القانوني{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 mb-3">تواصل معنا</h1>
+                <p class="lead">نحن هنا للمساعدة والإجابة على جميع استفساراتكم</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form -->
+<section class="contact-form py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="contact-form-card">
+                    <h2 class="text-center mb-4">أرسل لنا رسالة</h2>
+                    <form method="POST" id="contactForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">الاسم الكامل *</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">البريد الإلكتروني *</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">رقم الهاتف</label>
+                                <input type="tel" class="form-control" id="phone" name="phone">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="subject" class="form-label">الموضوع</label>
+                                <select class="form-select" id="subject" name="subject">
+                                    <option value="">اختر الموضوع</option>
+                                    <option value="consultation">استشارة قانونية</option>
+                                    <option value="litigation">التقاضي</option>
+                                    <option value="contracts">صياغة العقود</option>
+                                    <option value="arbitration">التحكيم والوساطة</option>
+                                    <option value="corporate">القانون التجاري</option>
+                                    <option value="real-estate">القانون العقاري</option>
+                                    <option value="other">أخرى</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">الرسالة *</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" required placeholder="اكتب رسالتك هنا..."></textarea>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="privacy" required>
+                            <label class="form-check-label" for="privacy">
+                                أوافق على <a href="#" class="text-primary">سياسة الخصوصية</a> وشروط الاستخدام
+                            </label>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">إرسال الرسالة</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Information -->
+<section class="contact-info py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title">معلومات التواصل</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="contact-info-card text-center h-100">
+                    <div class="contact-info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h4>العنوان</h4>
+                    <p>المدينة المنورة<br>المملكة العربية السعودية</p>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="contact-info-card text-center h-100">
+                    <div class="contact-info-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h4>هاتف</h4>
+                    <p>+966 XX XXX XXXX<br>+966 XX XXX XXXX</p>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="contact-info-card text-center h-100">
+                    <div class="contact-info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h4>البريد الإلكتروني</h4>
+                    <p>info@moellegal.com<br>consultation@moellegal.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Working Hours -->
+<section class="working-hours py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <div class="working-hours-card text-center">
+                    <h3 class="mb-4">أوقات العمل</h3>
+                    <div class="hours-list">
+                        <div class="d-flex justify-content-between py-2">
+                            <span>الأحد - الخميس</span>
+                            <span>8:00 ص - 6:00 م</span>
+                        </div>
+                        <div class="d-flex justify-content-between py-2">
+                            <span>الجمعة</span>
+                            <span>مغلق</span>
+                        </div>
+                        <div class="d-flex justify-content-between py-2">
+                            <span>السبت</span>
+                            <span>مغلق</span>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-muted">
+                            <i class="fas fa-info-circle me-2"></i>
+                            للحالات الطارئة، يمكنكم التواصل معنا في أي وقت
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ for Contact -->
+<section class="contact-faq py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title">أسئلة شائعة حول التواصل</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="contactFaqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="contactFaq1">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#contactCollapse1">
+                                كيف يمكنني حجز موعد للاستشارة؟
+                            </button>
+                        </h2>
+                        <div id="contactCollapse1" class="accordion-collapse collapse" data-bs-parent="#contactFaqAccordion">
+                            <div class="accordion-body">
+                                يمكنكم حجز موعد للاستشارة من خلال الاتصال بنا مباشرة أو إرسال رسالة عبر النموذج أعلاه وسنتواصل معكم لتحديد الموعد المناسب.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="contactFaq2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#contactCollapse2">
+                                هل يمكن الحصول على استشارة مجانية؟
+                            </button>
+                        </h2>
+                        <div id="contactCollapse2" class="accordion-collapse collapse" data-bs-parent="#contactFaqAccordion">
+                            <div class="accordion-body">
+                                نعم، نقدم استشارة أولية مجانية لمدة 15 دقيقة لتقييم حالتكم وتحديد كيفية مساعدتكم.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="contactFaq3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#contactCollapse3">
+                                هل تقدمون خدمات الاستشارة عن بُعد؟
+                            </button>
+                        </h2>
+                        <div id="contactCollapse3" class="accordion-collapse collapse" data-bs-parent="#contactFaqAccordion">
+                            <div class="accordion-body">
+                                نعم، نوفر خدمات الاستشارة عن بُعد عبر الهاتف أو الفيديو كول للعملاء الذين لا يستطيعون زيارة المكتب.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="contactFaq4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#contactCollapse4">
+                                ما هي المستندات المطلوبة للاستشارة؟
+                            </button>
+                        </h2>
+                        <div id="contactCollapse4" class="accordion-collapse collapse" data-bs-parent="#contactFaqAccordion">
+                            <div class="accordion-body">
+                                يرجى إحضار جميع المستندات ذات الصلة بقضيتكم مثل العقود، الوثائق الرسمية، المراسلات، وأي مستندات أخرى قد تساعد في فهم الوضع القانوني.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+// Form validation and submission handling
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const privacy = document.getElementById('privacy').checked;
+    
+    if (!name || !email || !message) {
+        e.preventDefault();
+        alert('يرجى ملء جميع الحقول المطلوبة');
+        return;
+    }
+    
+    if (!privacy) {
+        e.preventDefault();
+        alert('يرجى الموافقة على سياسة الخصوصية');
+        return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        e.preventDefault();
+        alert('يرجى إدخال بريد إلكتروني صحيح');
+        return;
+    }
+});
+</script>
+{% endblock %}

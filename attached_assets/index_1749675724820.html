@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block title %}الصفحة الرئيسية - موئل للتمثيل القانوني{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <h1 class="hero-title mb-4">موئل للتمثيل القانوني</h1>
+                    <p class="hero-description mb-4">نُقدم لك التمثيل القانوني باحترافية، نزاهة، وشفافية كاملة.</p>
+                    <a href="{{ url_for('contact') }}" class="btn btn-gold btn-lg">احصل على استشارة الآن</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-image text-center">
+                    <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="موئل للتمثيل القانوني" class="img-fluid hero-logo">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title">المدينة المنورة - عن موئل</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="about-content text-center">
+                    <p class="lead">موئل هو مكتب متخصص في تقديم خدمات التمثيل والاستشارات القانونية، نسعى لتحقيق العدالة وتمثيل عملائنا بكفاءة عالية.</p>
+                    <div class="mt-4">
+                        <a href="{{ url_for('about') }}" class="btn btn-outline-primary">اعرف أكثر عنا</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services-section py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title">خدماتنا</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h4>الاستشارات القانونية</h4>
+                    <p>نقدم لك حلول قانونية فورية ومبنية على الخبرة العميقة في مختلف التخصصات.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h4>التقاضي</h4>
+                    <p>الترافع وتمثيل العملاء أمام المحاكم باحترافية عالية.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h4>صياغة العقود</h4>
+                    <p>إعداد ومراجعة العقود والاتفاقيات بما يضمن حقوق جميع الأطراف.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4>التحكيم والوساطة</h4>
+                    <p>تسوية النزاعات بطرق ودية وسريعة خارج أروقة المحاكم.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center mt-4">
+                <a href="{{ url_for('services') }}" class="btn btn-primary btn-lg">عرض جميع الخدمات</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title">أسئلة شائعة</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq1">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                                كم تستغرق الاستشارة القانونية؟
+                            </button>
+                        </h2>
+                        <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                عادة ما تستغرق بين 30-45 دقيقة، حسب طبيعة الاستشارة.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                                هل تقدمون خدمات إلكترونية؟
+                            </button>
+                        </h2>
+                        <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                نعم، يمكن حجز استشارات عن بُعد.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                                ما هي أوقات العمل؟
+                            </button>
+                        </h2>
+                        <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                نعمل من الأحد إلى الخميس من الساعة 8:00 صباحاً حتى 6:00 مساءً.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="mb-3">هل تحتاج لاستشارة قانونية؟</h3>
+                <p class="mb-4">تواصل معنا الآن واحصل على استشارة مجانية</p>
+                <a href="{{ url_for('contact') }}" class="btn btn-light btn-lg">تواصل معنا الآن</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
