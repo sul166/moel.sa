@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأكيد استلام رسالتك - موئل للتمثيل القانوني</title>
+    <style>
+        body {
+            font-family: 'Tahoma', Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 16px;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 18px;
+            color: #1e3a8a;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .summary-box {
+            background-color: #f0f9ff;
+            border: 2px solid #0ea5e9;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0f2fe;
+        }
+        .summary-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .summary-label {
+            font-weight: bold;
+            color: #0c4a6e;
+            min-width: 120px;
+        }
+        .summary-value {
+            flex: 1;
+            margin-right: 15px;
+        }
+        .next-steps {
+            background-color: #f0fdf4;
+            border-right: 4px solid #22c55e;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .next-steps h3 {
+            color: #15803d;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .next-steps ul {
+            margin: 0;
+            padding-right: 20px;
+        }
+        .next-steps li {
+            margin-bottom: 8px;
+            color: #166534;
+        }
+        .contact-info {
+            background-color: #fefbf3;
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        .contact-info h4 {
+            color: #92400e;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .contact-method {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .contact-method i {
+            margin-left: 8px;
+        }
+        .footer {
+            background-color: #1f2937;
+            color: #9ca3af;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .footer .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+        .footer p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .highlight {
+            background-color: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #92400e;
+            font-weight: bold;
+        }
+        .icon {
+            font-size: 20px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>✅ تم استلام رسالتك بنجاح</h1>
+            <p>شكراً لثقتك في موئل للتمثيل القانوني</p>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="greeting">
+                مرحباً {{ contact.name }},
+            </div>
+            
+            <p style="font-size: 16px; margin-bottom: 25px;">
+                نشكرك على تواصلك معنا. لقد تم استلام رسالتك بنجاح وسيقوم فريقنا المختص بمراجعتها والرد عليك في أقرب وقت ممكن.
+            </p>
+
+            <div class="summary-box">
+                <h3 style="color: #0c4a6e; margin-top: 0; margin-bottom: 20px;">ملخص رسالتك:</h3>
+                <div class="summary-row">
+                    <span class="summary-label">اسم المرسل:</span>
+                    <span class="summary-value">{{ contact.name }}</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">البريد الإلكتروني:</span>
+                    <span class="summary-value">{{ contact.email }}</span>
+                </div>
+                {% if contact.phone %}
+                <div class="summary-row">
+                    <span class="summary-label">رقم الهاتف:</span>
+                    <span class="summary-value">{{ contact.phone }}</span>
+                </div>
+                {% endif %}
+                {% if contact.service_type %}
+                <div class="summary-row">
+                    <span class="summary-label">نوع الخدمة:</span>
+                    <span class="summary-value">{{ contact.service_type }}</span>
+                </div>
+                {% endif %}
+                <div class="summary-row">
+                    <span class="summary-label">تاريخ الإرسال:</span>
+                    <span class="summary-value">{{ contact.created_at.strftime('%d/%m/%Y الساعة %H:%M') }}</span>
+                </div>
+            </div>
+
+            <div class="next-steps">
+                <h3>الخطوات التالية:</h3>
+                <ul>
+                    <li>سيتم مراجعة رسالتك من قبل فريقنا المختص خلال <span class="highlight">24 ساعة</span></li>
+                    <li>سنتواصل معك عبر البريد الإلكتروني أو الهاتف حسب طبيعة الاستفسار</li>
+                    <li>في حالة الحاجة لمعلومات إضافية، سنطلبها منك مباشرة</li>
+                    <li>للحالات الطارئة، يمكنك الاتصال بنا مباشرة</li>
+                </ul>
+            </div>
+
+            <div class="contact-info">
+                <h4>للتواصل السريع:</h4>
+                <div class="contact-method">
+                    <strong>📞 هاتف المكتب:</strong> +966 XX XXX XXXX
+                </div>
+                <div class="contact-method">
+                    <strong>📧 البريد الإلكتروني:</strong> info@moellegal.com
+                </div>
+                <div class="contact-method">
+                    <strong>🏢 العنوان:</strong> المدينة المنورة، المملكة العربية السعودية
+                </div>
+                <div class="contact-method" style="margin-top: 15px; font-size: 14px; color: #92400e;">
+                    <strong>⏰ أوقات العمل:</strong> الأحد - الخميس (8:00 ص - 6:00 م)
+                </div>
+            </div>
+
+            <p style="font-size: 16px; text-align: center; margin: 30px 0; color: #1e3a8a;">
+                <strong>نحن ملتزمون بتقديم أفضل الخدمات القانونية لك ولأسرتك</strong>
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="logo">موئل للتمثيل القانوني</div>
+            <p><strong>العدالة هدفنا | الاحترافية طريقنا | رضاكم غايتنا</strong></p>
+            <p>المدينة المنورة، المملكة العربية السعودية</p>
+            <p style="margin-top: 15px; font-size: 12px; opacity: 0.7;">
+                هذه رسالة تأكيد تلقائية، يرجى عدم الرد عليها. للتواصل استخدم بيانات الاتصال المذكورة أعلاه.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

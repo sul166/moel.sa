@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شكراً لتواصلك مع موئل</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            direction: rtl;
+            text-align: right;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .content {
+            padding: 2rem;
+        }
+        
+        .welcome-message {
+            background-color: #f0f9ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-top: 4px solid #d4af37;
+        }
+        
+        .message-summary {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-right: 4px solid #d4af37;
+        }
+        
+        .summary-title {
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+        
+        .summary-item {
+            margin-bottom: 0.5rem;
+            padding: 0.25rem 0;
+        }
+        
+        .summary-label {
+            font-weight: bold;
+            color: #374151;
+            display: inline-block;
+            min-width: 100px;
+        }
+        
+        .next-steps {
+            background-color: #fef3c7;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-right: 4px solid #f59e0b;
+        }
+        
+        .next-steps h3 {
+            color: #92400e;
+            margin-top: 0;
+        }
+        
+        .steps-list {
+            margin: 0;
+            padding-right: 1.5rem;
+        }
+        
+        .steps-list li {
+            margin-bottom: 0.5rem;
+            color: #78350f;
+        }
+        
+        .contact-info {
+            background-color: #f3f4f6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .contact-info h3 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+        
+        .contact-item {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-icon {
+            color: #d4af37;
+            width: 20px;
+            margin-left: 0.5rem;
+        }
+        
+        .footer {
+            background-color: #1f2937;
+            color: #9ca3af;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer .logo {
+            color: #d4af37;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .service-type {
+            background-color: #e3f2fd;
+            color: #1565c0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>شكراً لتواصلك معنا</h1>
+            <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">{{ message.name }}، نقدر ثقتك في موئل للتمثيل القانوني</p>
+        </div>
+        
+        <div class="content">
+            <div class="welcome-message">
+                <h2 style="color: #1e3a8a; margin-top: 0;">مرحباً {{ message.name }}</h2>
+                <p>شكراً لك على التواصل مع موئل للتمثيل القانوني. لقد استلمنا رسالتك وسنعمل على الرد عليك في أقرب وقت ممكن.</p>
+                <p>نحن نقدر ثقتك بنا ونتطلع إلى خدمتك بأفضل ما لدينا من خبرة قانونية.</p>
+            </div>
+            
+            <div class="message-summary">
+                <div class="summary-title">ملخص رسالتك:</div>
+                <div class="summary-item">
+                    <span class="summary-label">الاسم:</span>
+                    {{ message.name }}
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">البريد الإلكتروني:</span>
+                    {{ message.email }}
+                </div>
+                {% if message.phone %}
+                <div class="summary-item">
+                    <span class="summary-label">الهاتف:</span>
+                    {{ message.phone }}
+                </div>
+                {% endif %}
+                {% if message.subject %}
+                <div class="summary-item">
+                    <span class="summary-label">الموضوع:</span>
+                    {{ message.subject }}
+                </div>
+                {% endif %}
+                {% if message.service_type %}
+                <div class="summary-item">
+                    <span class="summary-label">نوع الخدمة:</span>
+                    {% set service_names = {
+                        'consultation': 'استشارة قانونية',
+                        'litigation': 'تقاضي',
+                        'contracts': 'صياغة عقود',
+                        'arbitration': 'تحكيم ووساطة',
+                        'corporate': 'قانون تجاري',
+                        'real_estate': 'قانون عقاري',
+                        'other': 'أخرى'
+                    } %}
+                    <span class="service-type">{{ service_names.get(message.service_type, message.service_type) }}</span>
+                </div>
+                {% endif %}
+                <div class="summary-item">
+                    <span class="summary-label">تاريخ الإرسال:</span>
+                    {{ message.created_at.strftime('%Y-%m-%d %H:%M') if message.created_at else 'الآن' }}
+                </div>
+            </div>
+            
+            <div class="next-steps">
+                <h3>الخطوات التالية:</h3>
+                <ul class="steps-list">
+                    <li>سيقوم فريقنا بمراجعة رسالتك خلال 24 ساعة</li>
+                    <li>سنتواصل معك عبر البريد الإلكتروني أو الهاتف حسب تفضيلك</li>
+                    <li>يمكنك الحصول على استشارة أولية مجانية</li>
+                    <li>سنقوم بتحديد موعد مناسب للقاء إذا لزم الأمر</li>
+                </ul>
+            </div>
+            
+            <div class="contact-info">
+                <h3>معلومات التواصل</h3>
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    المدينة المنورة، المملكة العربية السعودية
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    +966 XX XXX XXXX
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">✉️</span>
+                    info@moellegal.com
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">⏰</span>
+                    الأحد - الخميس: 8:00 ص - 6:00 م
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem; padding: 1rem; background-color: #f9fafb; border-radius: 8px;">
+                <p style="margin: 0; color: #6b7280;">
+                    <strong>ملاحظة:</strong> إذا كانت حالتك طارئة، يرجى الاتصال بنا مباشرة على رقم الهاتف أعلاه.
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="logo">موئل للتمثيل القانوني</div>
+            <div>نُقدم لك التمثيل القانوني باحترافية، نزاهة، وشفافية كاملة</div>
+            <div style="margin-top: 0.5rem;">
+                © 2024 موئل للتمثيل القانوني. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

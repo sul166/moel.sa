@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}لوحة الإدارة - موئل للتمثيل القانوني{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header py-4 bg-dark text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1 class="h3 mb-0">لوحة الإدارة</h1>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <span class="text-muted">مرحباً، {{ session.admin_email }}</span>
+                <a href="{{ url_for('admin.logout') }}" class="btn btn-outline-light btn-sm ms-2">تسجيل خروج</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Dashboard Stats -->
+<section class="dashboard-stats py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="stat-card bg-primary text-white">
+                    <div class="stat-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>{{ stats.total_messages }}</h3>
+                        <p>إجمالي الرسائل</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="stat-card bg-warning text-white">
+                    <div class="stat-icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>{{ stats.unread_messages }}</h3>
+                        <p>رسائل غير مقروءة</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="stat-card bg-success text-white">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>{{ stats.replied_messages }}</h3>
+                        <p>رسائل مُجاب عليها</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="stat-card bg-info text-white">
+                    <div class="stat-icon">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>{{ stats.total_emails }}</h3>
+                        <p>إيميلات مُرسلة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Recent Messages -->
+<section class="recent-messages py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">الرسائل الأخيرة</h5>
+                        <a href="{{ url_for('admin.messages') }}" class="btn btn-primary btn-sm">عرض جميع الرسائل</a>
+                    </div>
+                    <div class="card-body">
+                        {% if recent_messages %}
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>الاسم</th>
+                                            <th>البريد الإلكتروني</th>
+                                            <th>الموضوع</th>
+                                            <th>التاريخ</th>
+                                            <th>الحالة</th>
+                                            <th>إجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for message in recent_messages %}
+                                        <tr class="{{ 'table-warning' if not message.is_read else '' }}">
+                                            <td>{{ message.name }}</td>
+                                            <td>{{ message.email }}</td>
+                                            <td>{{ message.subject or 'بدون موضوع' }}</td>
+                                            <td>{{ message.created_at.strftime('%Y-%m-%d %H:%M') if message.created_at else 'غير محدد' }}</td>
+                                            <td>
+                                                {% if not message.is_read %}
+                                                    <span class="badge bg-warning">غير مقروءة</span>
+                                                {% elif message.is_replied %}
+                                                    <span class="badge bg-success">مُجاب عليها</span>
+                                                {% else %}
+                                                    <span class="badge bg-info">مقروءة</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <a href="{{ url_for('admin.view_message', message_id=message.id) }}" class="btn btn-sm btn-outline-primary">عرض</a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% else %}
+                            <div class="text-center py-4">
+                                <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                                <h5 class="text-muted">لا توجد رسائل بعد</h5>
+                                <p class="text-muted">ستظهر الرسائل الجديدة هنا عند وصولها</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+.stat-card {
+    padding: 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    opacity: 0.8;
+    margin-left: 1rem;
+}
+
+.stat-content h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.stat-content p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+.table-warning {
+    background-color: rgba(255, 193, 7, 0.1) !important;
+}
+</style>
+{% endblock %}

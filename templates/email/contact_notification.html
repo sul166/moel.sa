@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رسالة جديدة من موقع موئل</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            direction: rtl;
+            text-align: right;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .content {
+            padding: 2rem;
+        }
+        
+        .message-info {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-right: 4px solid #d4af37;
+        }
+        
+        .info-row {
+            display: flex;
+            margin-bottom: 0.5rem;
+            padding: 0.25rem 0;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            min-width: 120px;
+            color: #1e3a8a;
+        }
+        
+        .info-value {
+            flex: 1;
+        }
+        
+        .message-content {
+            background-color: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .message-label {
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer {
+            background-color: #1f2937;
+            color: #9ca3af;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer .logo {
+            color: #d4af37;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .action-button {
+            display: inline-block;
+            background-color: #d4af37;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        
+        .service-type {
+            background-color: #e3f2fd;
+            color: #1565c0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>رسالة جديدة من موقع موئل</h1>
+            <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">تم استلام رسالة تواصل جديدة</p>
+        </div>
+        
+        <div class="content">
+            <div class="message-info">
+                <div class="info-row">
+                    <div class="info-label">الاسم:</div>
+                    <div class="info-value">{{ message.name }}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">البريد الإلكتروني:</div>
+                    <div class="info-value">{{ message.email }}</div>
+                </div>
+                {% if message.phone %}
+                <div class="info-row">
+                    <div class="info-label">رقم الهاتف:</div>
+                    <div class="info-value">{{ message.phone }}</div>
+                </div>
+                {% endif %}
+                {% if message.subject %}
+                <div class="info-row">
+                    <div class="info-label">الموضوع:</div>
+                    <div class="info-value">{{ message.subject }}</div>
+                </div>
+                {% endif %}
+                {% if message.service_type %}
+                <div class="info-row">
+                    <div class="info-label">نوع الخدمة:</div>
+                    <div class="info-value">
+                        {% set service_names = {
+                            'consultation': 'استشارة قانونية',
+                            'litigation': 'تقاضي',
+                            'contracts': 'صياغة عقود',
+                            'arbitration': 'تحكيم ووساطة',
+                            'corporate': 'قانون تجاري',
+                            'real_estate': 'قانون عقاري',
+                            'other': 'أخرى'
+                        } %}
+                        <span class="service-type">{{ service_names.get(message.service_type, message.service_type) }}</span>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="info-row">
+                    <div class="info-label">تاريخ الإرسال:</div>
+                    <div class="info-value">{{ message.created_at.strftime('%Y-%m-%d %H:%M') if message.created_at else 'الآن' }}</div>
+                </div>
+            </div>
+            
+            <div class="message-content">
+                <div class="message-label">نص الرسالة:</div>
+                <div>{{ message.message | replace('\n', '<br>') | safe }}</div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p style="color: #6b7280; margin-bottom: 1rem;">يمكنك الرد على هذه الرسالة من خلال لوحة الإدارة</p>
+                <a href="{{ url_for('admin.dashboard', _external=True) }}" class="action-button">
+                    فتح لوحة الإدارة
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="logo">موئل للتمثيل القانوني</div>
+            <div>المدينة المنورة، المملكة العربية السعودية</div>
+            <div>info@moellegal.com</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+
+{% block title %}إدارة الرسائل - موئل للتمثيل القانوني{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header py-4 bg-dark text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1 class="h3 mb-0">إدارة الرسائل</h1>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline-light btn-sm">العودة للوحة الإدارة</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Messages Filter -->
+<section class="messages-filter py-3 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="btn-group" role="group">
+                    <a href="{{ url_for('admin.messages', status='all') }}" 
+                       class="btn {{ 'btn-primary' if status_filter == 'all' else 'btn-outline-primary' }}">
+                        جميع الرسائل
+                    </a>
+                    <a href="{{ url_for('admin.messages', status='unread') }}" 
+                       class="btn {{ 'btn-primary' if status_filter == 'unread' else 'btn-outline-primary' }}">
+                        غير مقروءة
+                    </a>
+                    <a href="{{ url_for('admin.messages', status='read') }}" 
+                       class="btn {{ 'btn-primary' if status_filter == 'read' else 'btn-outline-primary' }}">
+                        مقروءة
+                    </a>
+                    <a href="{{ url_for('admin.messages', status='replied') }}" 
+                       class="btn {{ 'btn-primary' if status_filter == 'replied' else 'btn-outline-primary' }}">
+                        مُجاب عليها
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Messages List -->
+<section class="messages-list py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        {% if messages.items %}
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>الاسم</th>
+                                            <th>البريد الإلكتروني</th>
+                                            <th>الهاتف</th>
+                                            <th>الموضوع</th>
+                                            <th>نوع الخدمة</th>
+                                            <th>التاريخ</th>
+                                            <th>الحالة</th>
+                                            <th>إجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for message in messages.items %}
+                                        <tr class="{{ 'table-warning' if not message.is_read else '' }}">
+                                            <td>
+                                                <strong>{{ message.name }}</strong>
+                                                {% if not message.is_read %}
+                                                    <i class="fas fa-circle text-warning ms-1" style="font-size: 0.5rem;"></i>
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ message.email }}</td>
+                                            <td>{{ message.phone or '-' }}</td>
+                                            <td>{{ message.subject or 'بدون موضوع' }}</td>
+                                            <td>
+                                                {% if message.service_type %}
+                                                    {% set service_names = {
+                                                        'consultation': 'استشارة قانونية',
+                                                        'litigation': 'تقاضي',
+                                                        'contracts': 'صياغة عقود',
+                                                        'arbitration': 'تحكيم ووساطة',
+                                                        'corporate': 'قانون تجاري',
+                                                        'real_estate': 'قانون عقاري',
+                                                        'other': 'أخرى'
+                                                    } %}
+                                                    {{ service_names.get(message.service_type, message.service_type) }}
+                                                {% else %}
+                                                    -
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ message.created_at.strftime('%Y-%m-%d %H:%M') if message.created_at else 'غير محدد' }}</td>
+                                            <td>
+                                                {% if not message.is_read %}
+                                                    <span class="badge bg-warning">غير مقروءة</span>
+                                                {% elif message.is_replied %}
+                                                    <span class="badge bg-success">مُجاب عليها</span>
+                                                {% else %}
+                                                    <span class="badge bg-info">مقروءة</span>
+                                                {% endif %}
+                                                
+                                                {% if message.email_sent %}
+                                                    <i class="fas fa-check-circle text-success ms-1" title="تم إرسال إيميل التنبيه"></i>
+                                                {% endif %}
+                                                {% if message.welcome_email_sent %}
+                                                    <i class="fas fa-envelope text-info ms-1" title="تم إرسال رسالة الترحيب"></i>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <a href="{{ url_for('admin.view_message', message_id=message.id) }}" 
+                                                   class="btn btn-sm btn-outline-primary">عرض</a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- Pagination -->
+                            {% if messages.pages > 1 %}
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center">
+                                    {% if messages.has_prev %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{ url_for('admin.messages', page=messages.prev_num, status=status_filter) }}">السابق</a>
+                                        </li>
+                                    {% endif %}
+                                    
+                                    {% for page_num in messages.iter_pages() %}
+                                        {% if page_num %}
+                                            {% if page_num != messages.page %}
+                                                <li class="page-item">
+                                                    <a class="page-link" href="{{ url_for('admin.messages', page=page_num, status=status_filter) }}">{{ page_num }}</a>
+                                                </li>
+                                            {% else %}
+                                                <li class="page-item active">
+                                                    <span class="page-link">{{ page_num }}</span>
+                                                </li>
+                                            {% endif %}
+                                        {% else %}
+                                            <li class="page-item disabled">
+                                                <span class="page-link">...</span>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    
+                                    {% if messages.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{ url_for('admin.messages', page=messages.next_num, status=status_filter) }}">التالي</a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                            {% endif %}
+                        {% else %}
+                            <div class="text-center py-5">
+                                <i class="fas fa-inbox fa-4x text-muted mb-3"></i>
+                                <h4 class="text-muted">لا توجد رسائل</h4>
+                                <p class="text-muted">
+                                    {% if status_filter == 'unread' %}
+                                        لا توجد رسائل غير مقروءة
+                                    {% elif status_filter == 'replied' %}
+                                        لا توجد رسائل مُجاب عليها
+                                    {% else %}
+                                        لم يتم استلام أي رسائل بعد
+                                    {% endif %}
+                                </p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+.table-warning {
+    background-color: rgba(255, 193, 7, 0.1) !important;
+}
+
+.page-link {
+    color: var(--primary-color);
+}
+
+.page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+</style>
+{% endblock %}

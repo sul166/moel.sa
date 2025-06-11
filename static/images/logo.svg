@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <!-- Gradient definitions -->
+    <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffd700;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Shadow filter -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="150" cy="150" r="140" fill="url(#primaryGradient)" filter="url(#shadow)"/>
+  
+  <!-- Inner circle -->
+  <circle cx="150" cy="150" r="120" fill="none" stroke="url(#goldGradient)" stroke-width="3" opacity="0.8"/>
+  
+  <!-- Scales of Justice - Main Symbol -->
+  <g transform="translate(150,150)">
+    <!-- Central pillar -->
+    <rect x="-3" y="-60" width="6" height="120" fill="url(#goldGradient)"/>
+    
+    <!-- Top decorative element -->
+    <circle cx="0" cy="-65" r="8" fill="url(#goldGradient)"/>
+    
+    <!-- Balance beam -->
+    <rect x="-50" y="-55" width="100" height="4" fill="url(#goldGradient)"/>
+    
+    <!-- Left scale -->
+    <g transform="translate(-35,-45)">
+      <!-- Scale plate -->
+      <ellipse cx="0" cy="0" rx="18" ry="3" fill="url(#goldGradient)"/>
+      <!-- Chains -->
+      <line x1="-15" y1="-10" x2="-12" y2="0" stroke="url(#goldGradient)" stroke-width="1.5"/>
+      <line x1="15" y1="-10" x2="12" y2="0" stroke="url(#goldGradient)" stroke-width="1.5"/>
+      <line x1="0" y1="-10" x2="0" y2="0" stroke="url(#goldGradient)" stroke-width="1.5"/>
+    </g>
+    
+    <!-- Right scale -->
+    <g transform="translate(35,-45)">
+      <!-- Scale plate -->
+      <ellipse cx="0" cy="0" rx="18" ry="3" fill="url(#goldGradient)"/>
+      <!-- Chains -->
+      <line x1="-15" y1="-10" x2="-12" y2="0" stroke="url(#goldGradient)" stroke-width="1.5"/>
+      <line x1="15" y1="-10" x2="12" y2="0" stroke="url(#goldGradient)" stroke-width="1.5"/>
+      <line x1="0" y1="-10" x2="0" y2="0" stroke="url(#goldGradient)" stroke-width="1.5"/>
+    </g>
+    
+    <!-- Base -->
+    <rect x="-25" y="55" width="50" height="8" rx="4" fill="url(#goldGradient)"/>
+    
+    <!-- Legal book symbol -->
+    <g transform="translate(0,25)">
+      <rect x="-15" y="-8" width="30" height="16" rx="2" fill="white" opacity="0.9"/>
+      <rect x="-13" y="-6" width="26" height="12" rx="1" fill="url(#primaryGradient)" opacity="0.8"/>
+      <!-- Book lines -->
+      <line x1="-10" y1="-3" x2="10" y2="-3" stroke="white" stroke-width="1" opacity="0.7"/>
+      <line x1="-10" y1="0" x2="8" y2="0" stroke="white" stroke-width="1" opacity="0.7"/>
+      <line x1="-10" y1="3" x2="10" y2="3" stroke="white" stroke-width="1" opacity="0.7"/>
+    </g>
+  </g>
+  
+  <!-- Arabic text "موئل" -->
+  <text x="150" y="250" text-anchor="middle" fill="white" font-family="Arial" font-size="28" font-weight="bold">
+    موئل
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="150" y="275" text-anchor="middle" fill="url(#goldGradient)" font-family="Arial" font-size="14" font-weight="600">
+    للتمثيل القانوني
+  </text>
+  
+  <!-- Decorative elements -->
+  <g opacity="0.3">
+    <!-- Corner decorations -->
+    <circle cx="50" cy="50" r="3" fill="url(#goldGradient)"/>
+    <circle cx="250" cy="50" r="3" fill="url(#goldGradient)"/>
+    <circle cx="50" cy="250" r="3" fill="url(#goldGradient)"/>
+    <circle cx="250" cy="250" r="3" fill="url(#goldGradient)"/>
+    
+    <!-- Legal symbols around the main logo -->
+    <g transform="translate(80,80)" opacity="0.5">
+      <path d="M0,0 L8,0 L8,12 L0,12 Z" fill="white"/>
+      <path d="M2,2 L6,2 M2,4 L6,4 M2,6 L5,6" stroke="url(#primaryGradient)" stroke-width="0.5"/>
+    </g>
+    
+    <g transform="translate(212,80)" opacity="0.5">
+      <circle cx="4" cy="6" r="4" fill="none" stroke="white" stroke-width="1"/>
+      <line x1="4" y1="2" x2="4" y2="10" stroke="white" stroke-width="1"/>
+    </g>
+    
+    <g transform="translate(80,212)" opacity="0.5">
+      <polygon points="4,0 8,6 0,6" fill="white"/>
+      <line x1="4" y1="6" x2="4" y2="12" stroke="white" stroke-width="1"/>
+    </g>
+    
+    <g transform="translate(212,212)" opacity="0.5">
+      <rect x="0" y="0" width="8" height="8" rx="1" fill="white"/>
+      <line x1="2" y1="2" x2="6" y2="6" stroke="url(#primaryGradient)" stroke-width="0.8"/>
+      <line x1="6" y1="2" x2="2" y2="6" stroke="url(#primaryGradient)" stroke-width="0.8"/>
+    </g>
+  </g>
+  
+  <!-- Outer ring for premium look -->
+  <circle cx="150" cy="150" r="145" fill="none" stroke="url(#goldGradient)" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Inner highlight -->
+  <circle cx="150" cy="150" r="115" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+</svg>
