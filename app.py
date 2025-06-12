@@ -49,6 +49,14 @@ mail = Mail(app)
 # Import models after db initialization
 from models import ContactMessage
 
+# Custom template filter for line breaks
+@app.template_filter('nl2br')
+def nl2br_filter(text):
+    """Convert newlines to HTML line breaks"""
+    if text:
+        return text.replace('\n', '<br>')
+    return text
+
 with app.app_context():
     db.create_all()
 
