@@ -11,10 +11,10 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Google Fonts - Arabic -->
+    <!-- Google Fonts - Arabic & English -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -47,6 +47,20 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('contact') }}">تواصل معنا</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-globe me-1"></i>
+                            <span id="currentLang">العربية</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                            <li><a class="dropdown-item" href="#" onclick="switchLanguage('ar')">
+                                <i class="fas fa-flag me-2"></i>العربية
+                            </a></li>
+                            <li><a class="dropdown-item" href="#" onclick="switchLanguage('en')">
+                                <i class="fas fa-flag me-2"></i>English
+                            </a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -124,6 +138,111 @@
     
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    
+    <!-- Language Switching Script -->
+    <script>
+        // Translation object
+        const translations = {
+            ar: {
+                'الصفحة الرئيسية': 'الصفحة الرئيسية',
+                'خدماتنا': 'خدماتنا',
+                'من نحن': 'من نحن',
+                'تواصل معنا': 'تواصل معنا',
+                'العربية': 'العربية',
+                'موئل للتمثيل القانوني': 'موئل للتمثيل القانوني',
+                'نُقدم لك التمثيل القانوني باحترافية، نزاهة، وشفافية كاملة.': 'نُقدم لك التمثيل القانوني باحترافية، نزاهة، وشفافية كاملة.',
+                'احصل على استشارة الآن': 'احصل على استشارة الآن',
+                'المدينة المنورة - عن موئل': 'المدينة المنورة - عن موئل',
+                'موئل هو مكتب متخصص في تقديم خدمات التمثيل والاستشارات القانونية، نسعى لتحقيق العدالة وتمثيل عملائنا بكفاءة عالية.': 'موئل هو مكتب متخصص في تقديم خدمات التمثيل والاستشارات القانونية، نسعى لتحقيق العدالة وتمثيل عملائنا بكفاءة عالية.',
+                'اعرف أكثر عنا': 'اعرف أكثر عنا',
+                'روابط سريعة': 'روابط سريعة',
+                'معلومات التواصل': 'معلومات التواصل',
+                'المدينة المنورة، المملكة العربية السعودية': 'المدينة المنورة، المملكة العربية السعودية',
+                'جميع الحقوق محفوظة': 'جميع الحقوق محفوظة'
+            },
+            en: {
+                'الصفحة الرئيسية': 'Home',
+                'خدماتنا': 'Our Services',
+                'من نحن': 'About Us',
+                'تواصل معنا': 'Contact Us',
+                'العربية': 'English',
+                'موئل للتمثيل القانوني': 'Mawel Legal Representation',
+                'نُقدم لك التمثيل القانوني باحترافية، نزاهة، وشفافية كاملة.': 'We provide professional, honest, and transparent legal representation.',
+                'احصل على استشارة الآن': 'Get Consultation Now',
+                'المدينة المنورة - عن موئل': 'Medina - About Mawel',
+                'موئل هو مكتب متخصص في تقديم خدمات التمثيل والاستشارات القانونية، نسعى لتحقيق العدالة وتمثيل عملائنا بكفاءة عالية.': 'Mawel is a specialized office providing legal representation and consultation services. We strive to achieve justice and represent our clients with high efficiency.',
+                'اعرف أكثر عنا': 'Learn More About Us',
+                'روابط سريعة': 'Quick Links',
+                'معلومات التواصل': 'Contact Information',
+                'المدينة المنورة، المملكة العربية السعودية': 'Medina, Saudi Arabia',
+                'جميع الحقوق محفوظة': 'All Rights Reserved'
+            }
+        };
+
+        // Current language
+        let currentLang = localStorage.getItem('language') || 'ar';
+
+        // Switch language function
+        function switchLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('language', lang);
+            
+            // Update current language display
+            document.getElementById('currentLang').textContent = lang === 'ar' ? 'العربية' : 'English';
+            
+            // Update page direction and language attributes
+            const html = document.documentElement;
+            if (lang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                document.body.style.fontFamily = "'Tajawal', sans-serif";
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                document.body.style.fontFamily = "'Inter', sans-serif";
+            }
+            
+            // Update all translatable elements
+            updatePageContent(lang);
+        }
+
+        // Update page content
+        function updatePageContent(lang) {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                const text = link.textContent.trim();
+                if (translations[lang] && translations[lang][text]) {
+                    link.textContent = translations[lang][text];
+                }
+            });
+            
+            // Update other elements by text content
+            const translatableSelectors = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'a', 'button'];
+            translatableSelectors.forEach(selector => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(element => {
+                    const text = element.textContent.trim();
+                    if (translations[lang] && translations[lang][text]) {
+                        element.textContent = translations[lang][text];
+                    }
+                });
+            });
+        }
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            switchLanguage(currentLang);
+        });
+    </script>
     
     {% block extra_scripts %}{% endblock %}
 </body>

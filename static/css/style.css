@@ -12,6 +12,39 @@ body {
     background-color: #f8f9fa;
     direction: rtl;
     text-align: right;
+    transition: all 0.3s ease;
+}
+
+/* English language support */
+[lang="en"] {
+    font-family: 'Inter', sans-serif;
+    direction: ltr;
+    text-align: left;
+}
+
+[lang="en"] body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Language switcher styles */
+.dropdown-menu {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(193, 190, 180, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    color: var(--primary-color);
+    font-weight: 500;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 /* Colors */
