@@ -30,7 +30,23 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     margin-bottom: 1rem;
-    color: var(--dark-color);
+    color: var(--primary-color);
+}
+
+/* Text colors for different backgrounds */
+.bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark h4, .bg-dark h5, .bg-dark h6,
+.hero-section h1, .hero-section h2, .hero-section h3, .hero-section h4, .hero-section h5, .hero-section h6,
+.page-header h1, .page-header h2, .page-header h3, .page-header h4, .page-header h5, .page-header h6,
+.cta-section h1, .cta-section h2, .cta-section h3, .cta-section h4, .cta-section h5, .cta-section h6,
+.navbar h1, .navbar h2, .navbar h3, .navbar h4, .navbar h5, .navbar h6 {
+    color: #c1beb4 !important;
+}
+
+.bg-dark p, .bg-dark span, .bg-dark div,
+.hero-section p, .hero-section span, .hero-section div,
+.page-header p, .page-header span, .page-header div,
+.cta-section p, .cta-section span, .cta-section div {
+    color: #c1beb4 !important;
 }
 
 .text-gold {
@@ -79,9 +95,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-brand img {
-    height: 55px;
+    height: 65px;
     width: auto;
-    max-width: 220px;
+    max-width: 280px;
 }
 
 .brand-text {
@@ -89,7 +105,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 0.9) !important;
+    color: #c1beb4 !important;
     font-weight: 500;
     margin: 0 10px;
     padding: 8px 16px !important;
@@ -99,8 +115,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
-    color: white !important;
-    background-color: rgba(255, 255, 255, 0.1);
+    color: #c1beb4 !important;
+    background-color: rgba(193, 190, 180, 0.2);
     transform: translateY(-1px);
 }
 
@@ -146,13 +162,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-logo {
-    max-width: 350px;
+    max-width: 400px;
     height: auto;
-    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
 }
 
 /* Sections */

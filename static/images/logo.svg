@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="400" height="120">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" width="500" height="150">
   <defs>
-    <!-- Gradient definitions -->
+    <!-- Gradient definitions using your specified colors -->
     <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#1b1b68;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#3a3a8a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2a2a80;stop-opacity:1" />
     </linearGradient>
     
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -11,62 +11,54 @@
       <stop offset="100%" style="stop-color:#d4d1c7;stop-opacity:1" />
     </linearGradient>
     
-    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#2a2a6b;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#4a4a8b;stop-opacity:1" />
-    </linearGradient>
-    
     <!-- Shadow filter -->
     <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.2"/>
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.3"/>
     </filter>
   </defs>
   
-  <!-- Background with soft gradient -->
-  <rect width="400" height="120" rx="8" fill="url(#accentGradient)" opacity="0.1"/>
-  
   <!-- Legal scales icon -->
-  <g transform="translate(20, 20)">
+  <g transform="translate(30, 25)">
     <!-- Base of scales -->
-    <rect x="35" y="70" width="10" height="8" fill="url(#primaryGradient)" rx="2"/>
+    <rect x="40" y="85" width="12" height="10" fill="url(#primaryGradient)" rx="3"/>
     
     <!-- Main pole -->
-    <rect x="38" y="25" width="4" height="50" fill="url(#primaryGradient)" rx="2"/>
+    <rect x="44" y="30" width="4" height="60" fill="url(#primaryGradient)" rx="2"/>
     
     <!-- Cross beam -->
-    <rect x="20" y="27" width="40" height="3" fill="url(#primaryGradient)" rx="1.5"/>
+    <rect x="25" y="32" width="42" height="3" fill="url(#primaryGradient)" rx="1.5"/>
     
     <!-- Left scale -->
-    <g transform="translate(15, 30)">
-      <path d="M 0 0 L 20 0 L 18 12 L 2 12 Z" fill="url(#accentGradient)" stroke="url(#primaryGradient)" stroke-width="1"/>
-      <line x1="10" y1="0" x2="10" y2="-8" stroke="url(#primaryGradient)" stroke-width="2"/>
+    <g transform="translate(18, 35)">
+      <path d="M 0 0 L 22 0 L 20 14 L 2 14 Z" fill="url(#accentGradient)" stroke="url(#primaryGradient)" stroke-width="1.5"/>
+      <line x1="11" y1="0" x2="11" y2="-10" stroke="url(#primaryGradient)" stroke-width="2"/>
     </g>
     
     <!-- Right scale -->
-    <g transform="translate(45, 30)">
-      <path d="M 0 0 L 20 0 L 18 12 L 2 12 Z" fill="url(#accentGradient)" stroke="url(#primaryGradient)" stroke-width="1"/>
-      <line x1="10" y1="0" x2="10" y2="-8" stroke="url(#primaryGradient)" stroke-width="2"/>
+    <g transform="translate(52, 35)">
+      <path d="M 0 0 L 22 0 L 20 14 L 2 14 Z" fill="url(#accentGradient)" stroke="url(#primaryGradient)" stroke-width="1.5"/>
+      <line x1="11" y1="0" x2="11" y2="-10" stroke="url(#primaryGradient)" stroke-width="2"/>
     </g>
     
     <!-- Decorative elements -->
-    <circle cx="40" cy="20" r="3" fill="url(#accentGradient)"/>
+    <circle cx="46" cy="25" r="3" fill="url(#accentGradient)"/>
   </g>
   
   <!-- Arabic text "موئل" -->
-  <g transform="translate(120, 35)" filter="url(#shadow)">
-    <text x="0" y="0" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="url(#textGradient)" text-anchor="start">موئل</text>
+  <g transform="translate(150, 50)" filter="url(#shadow)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="url(#primaryGradient)" text-anchor="start">موئل</text>
   </g>
   
   <!-- "للتمثيل القانوني" text -->
-  <g transform="translate(120, 65)" filter="url(#shadow)">
-    <text x="0" y="0" font-family="Arial, sans-serif" font-size="16" font-weight="normal" fill="url(#textGradient)" text-anchor="start">للتمثيل القانوني</text>
+  <g transform="translate(150, 85)" filter="url(#shadow)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="20" font-weight="normal" fill="url(#primaryGradient)" text-anchor="start">للتمثيل القانوني</text>
   </g>
   
   <!-- "Legal Representation" in English -->
-  <g transform="translate(120, 85)" filter="url(#shadow)">
-    <text x="0" y="0" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="url(#primaryGradient)" text-anchor="start" opacity="0.8">Legal Representation</text>
+  <g transform="translate(150, 110)" filter="url(#shadow)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="url(#accentGradient)" text-anchor="start" opacity="0.9">Legal Representation</text>
   </g>
   
   <!-- Decorative line -->
-  <line x1="120" y1="95" x2="280" y2="95" stroke="url(#accentGradient)" stroke-width="2" opacity="0.6"/>
+  <line x1="150" y1="120" x2="350" y2="120" stroke="url(#accentGradient)" stroke-width="2" opacity="0.7"/>
 </svg>
