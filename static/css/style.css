@@ -8,10 +8,8 @@
 body {
     font-family: 'Tajawal', sans-serif;
     line-height: 1.6;
-    color: #333;
-    background: linear-gradient(135deg, rgba(248, 249, 250, 1) 0%, rgba(193, 190, 180, 0.08) 50%, rgba(248, 249, 250, 1) 100%);
-    background-attachment: fixed;
-    min-height: 100vh;
+    color: #1b1b68;
+    background-color: #f8f9fa;
     direction: rtl;
     text-align: right;
 }
@@ -63,7 +61,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Navigation */
 .navbar {
-    background: linear-gradient(135deg, rgba(27, 27, 104, 0.95) 0%, rgba(193, 190, 180, 0.1) 50%, rgba(42, 42, 128, 0.9) 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a80 100%);
     padding: 1rem 0;
     box-shadow: 0 2px 20px rgba(27, 27, 104, 0.1);
     transition: all 0.3s ease;
@@ -108,8 +106,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(135deg, rgba(27, 27, 104, 0.9) 0%, rgba(193, 190, 180, 0.2) 50%, rgba(58, 58, 138, 0.8) 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a80 100%);
+    color: #c1beb4;
     padding: 100px 0 50px;
     position: relative;
     overflow: hidden;
@@ -136,12 +134,14 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 3.5rem;
     font-weight: 900;
     margin-bottom: 1.5rem;
+    color: #c1beb4;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .hero-description {
     font-size: 1.3rem;
     margin-bottom: 2rem;
+    color: #c1beb4;
     opacity: 0.95;
 }
 
@@ -178,7 +178,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Page Header */
 .page-header {
-    background: linear-gradient(135deg, rgba(27, 27, 104, 0.9) 0%, rgba(193, 190, 180, 0.3) 50%, rgba(58, 58, 138, 0.8) 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a80 100%);
     margin-top: 76px;
 }
 
@@ -491,7 +491,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* CTA Section */
 .cta-section {
-    background: linear-gradient(135deg, rgba(27, 27, 104, 0.85) 0%, rgba(193, 190, 180, 0.25) 50%, rgba(58, 58, 138, 0.8) 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a80 100%);
     position: relative;
     overflow: hidden;
 }
