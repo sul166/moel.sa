@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}موئل للتمثيل القانوني{% endblock %}</title>
     
-    <!-- Bootstrap 5 RTL CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <!-- Bootstrap 5 CSS (both RTL and LTR) -->
+    <link id="bootstrap-css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
     
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -190,52 +190,132 @@
             // Update current language display
             document.getElementById('currentLang').textContent = lang === 'ar' ? 'العربية' : 'English';
             
+            // Update Bootstrap CSS for direction
+            const bootstrapCSS = document.getElementById('bootstrap-css');
+            if (lang === 'ar') {
+                bootstrapCSS.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css';
+            } else {
+                bootstrapCSS.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css';
+            }
+            
             // Update page direction and language attributes
             const html = document.documentElement;
+            const body = document.body;
+            
             if (lang === 'ar') {
                 html.setAttribute('lang', 'ar');
                 html.setAttribute('dir', 'rtl');
-                document.body.style.fontFamily = "'Tajawal', sans-serif";
+                body.setAttribute('dir', 'rtl');
+                body.style.fontFamily = "'Tajawal', sans-serif";
+                body.style.textAlign = 'right';
             } else {
                 html.setAttribute('lang', 'en');
                 html.setAttribute('dir', 'ltr');
-                document.body.style.fontFamily = "'Inter', sans-serif";
+                body.setAttribute('dir', 'ltr');
+                body.style.fontFamily = "'Inter', sans-serif";
+                body.style.textAlign = 'left';
             }
             
             // Update all translatable elements
-            updatePageContent(lang);
+            setTimeout(() => {
+                updatePageContent(lang);
+            }, 100);
         }
 
         // Update page content
         function updatePageContent(lang) {
-            const elements = document.querySelectorAll('[data-translate]');
-            elements.forEach(element => {
-                const key = element.getAttribute('data-translate');
-                if (translations[lang] && translations[lang][key]) {
-                    element.textContent = translations[lang][key];
-                }
-            });
-            
-            // Update navigation links
+            // Navigation links
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
-                const text = link.textContent.trim();
-                if (translations[lang] && translations[lang][text]) {
-                    link.textContent = translations[lang][text];
+                const href = link.getAttribute('href');
+                if (href && href.includes('index') || href === '/') {
+                    link.textContent = lang === 'ar' ? 'الصفحة الرئيسية' : 'Home';
+                } else if (href && href.includes('services')) {
+                    link.textContent = lang === 'ar' ? 'خدماتنا' : 'Our Services';
+                } else if (href && href.includes('about')) {
+                    link.textContent = lang === 'ar' ? 'من نحن' : 'About Us';
+                } else if (href && href.includes('contact')) {
+                    link.textContent = lang === 'ar' ? 'تواصل معنا' : 'Contact Us';
                 }
             });
-            
-            // Update other elements by text content
-            const translatableSelectors = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'a', 'button'];
-            translatableSelectors.forEach(selector => {
-                const elements = document.querySelectorAll(selector);
-                elements.forEach(element => {
-                    const text = element.textContent.trim();
-                    if (translations[lang] && translations[lang][text]) {
-                        element.textContent = translations[lang][text];
-                    }
-                });
+
+            // Hero section
+            const heroTitle = document.querySelector('.hero-title');
+            if (heroTitle) {
+                heroTitle.textContent = lang === 'ar' ? 'موئل للتمثيل القانوني' : 'Mawel Legal Representation';
+            }
+
+            const heroDesc = document.querySelector('.hero-description');
+            if (heroDesc) {
+                heroDesc.textContent = lang === 'ar' ? 
+                    'نُقدم لك التمثيل القانوني باحترافية، نزاهة، وشفافية كاملة.' : 
+                    'We provide professional, honest, and transparent legal representation.';
+            }
+
+            const btnGold = document.querySelector('.btn-gold');
+            if (btnGold) {
+                btnGold.textContent = lang === 'ar' ? 'احصل على استشارة الآن' : 'Get Consultation Now';
+            }
+
+            // Section title
+            const sectionTitle = document.querySelector('.section-title');
+            if (sectionTitle) {
+                sectionTitle.textContent = lang === 'ar' ? 'المدينة المنورة - عن موئل' : 'Medina - About Mawel';
+            }
+
+            // About content
+            const aboutLead = document.querySelector('.about-content .lead');
+            if (aboutLead) {
+                aboutLead.textContent = lang === 'ar' ? 
+                    'موئل هو مكتب متخصص في تقديم خدمات التمثيل والاستشارات القانونية، نسعى لتحقيق العدالة وتمثيل عملائنا بكفاءة عالية.' :
+                    'Mawel is a specialized office providing legal representation and consultation services. We strive to achieve justice and represent our clients with high efficiency.';
+            }
+
+            const btnOutline = document.querySelector('.btn-outline-primary');
+            if (btnOutline) {
+                btnOutline.textContent = lang === 'ar' ? 'اعرف أكثر عنا' : 'Learn More About Us';
+            }
+
+            // Brand text
+            const brandText = document.querySelector('.brand-text');
+            if (brandText) {
+                brandText.textContent = lang === 'ar' ? 'موئل للتمثيل القانوني' : 'Mawel Legal';
+            }
+
+            // Footer headings
+            const footerHeadings = document.querySelectorAll('.footer h5');
+            footerHeadings.forEach(heading => {
+                const text = heading.textContent.trim();
+                if (text.includes('موئل') || text.includes('Mawel')) {
+                    heading.textContent = lang === 'ar' ? 'موئل للتمثيل القانوني' : 'Mawel Legal Representation';
+                } else if (text.includes('روابط') || text.includes('Quick')) {
+                    heading.textContent = lang === 'ar' ? 'روابط سريعة' : 'Quick Links';
+                } else if (text.includes('معلومات') || text.includes('Contact')) {
+                    heading.textContent = lang === 'ar' ? 'معلومات التواصل' : 'Contact Information';
+                }
             });
+
+            // Footer description
+            const footerDesc = document.querySelector('.footer p.text-muted');
+            if (footerDesc && !footerDesc.querySelector('i')) {
+                footerDesc.textContent = lang === 'ar' ? 
+                    'نُقدم لك التمثيل القانوني باحترافية، نزاهة، وشفافية كاملة.' :
+                    'We provide professional, honest, and transparent legal representation.';
+            }
+
+            // Copyright
+            const copyright = document.querySelector('.footer .text-muted:last-child');
+            if (copyright) {
+                const year = new Date().getFullYear();
+                copyright.textContent = lang === 'ar' ? 
+                    `© ${year} موئل للتمثيل القانوني. جميع الحقوق محفوظة.` :
+                    `© ${year} Mawel Legal Representation. All Rights Reserved.`;
+            }
+
+            // Page title
+            document.title = lang === 'ar' ? 
+                'الصفحة الرئيسية - موئل للتمثيل القانوني' : 
+                'Home - Mawel Legal Representation';
         }
 
         // Initialize language on page load
