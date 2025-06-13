@@ -15,9 +15,9 @@ body {
 
 /* Colors */
 :root {
-    --primary-color: #1e3a8a;
-    --secondary-color: #fbbf24;
-    --gold-color: #d4af37;
+    --primary-color: #1b1b68;
+    --secondary-color: #c1beb4;
+    --gold-color: #c1beb4;
     --dark-color: #1f2937;
     --light-color: #f8fafc;
     --white: #ffffff;
@@ -51,23 +51,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-gold:hover {
-    background-color: #b8941f;
-    border-color: #b8941f;
+    background-color: #a8a598;
+    border-color: #a8a598;
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 4px 15px rgba(193, 190, 180, 0.3);
 }
 
 /* Navigation */
 .navbar {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #1e40af 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a80 100%);
     padding: 1rem 0;
-    box-shadow: 0 2px 20px rgba(30, 58, 138, 0.1);
+    box-shadow: 0 2px 20px rgba(27, 27, 104, 0.1);
     transition: all 0.3s ease;
 }
 
 .navbar-scrolled {
-    background: rgba(30, 58, 138, 0.95);
+    background: rgba(27, 27, 104, 0.95);
     backdrop-filter: blur(10px);
 }
 
@@ -99,7 +99,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #1e40af 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a80 100%);
     color: white;
     padding: 100px 0 50px;
     position: relative;
@@ -165,7 +165,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Page Header */
 .page-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #1e40af 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a80 100%);
     margin-top: 76px;
 }
 
@@ -478,7 +478,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* CTA Section */
 .cta-section {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #1e40af 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a80 100%);
     position: relative;
     overflow: hidden;
 }
