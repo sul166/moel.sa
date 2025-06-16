@@ -1,4 +1,4 @@
- # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 import os
 from flask import Flask, render_template, request, flash, redirect, url_for
@@ -29,8 +29,7 @@ app.secret_key = os.environ.get("SESSION_SECRET",
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 
 # Configure the database
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
-    "DATABASE_URL", " ")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", " ")
 app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
     "pool_recycle": 300,
     "pool_pre_ping": True,
@@ -39,11 +38,14 @@ app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
 # Configure Flask-Mail for dmail.sa SMTP
 app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER', 'mail.dmail.sa')
 app.config['MAIL_PORT'] = int(os.environ.get('MAIL_PORT', 587))
-app.config['MAIL_USE_TLS'] = os.environ.get('MAIL_USE_TLS', 'True').lower() == 'true'
-app.config['MAIL_USE_SSL'] = os.environ.get('MAIL_USE_SSL', 'False').lower() == 'true'
+app.config['MAIL_USE_TLS'] = os.environ.get('MAIL_USE_TLS',
+                                            'True').lower() == 'true'
+app.config['MAIL_USE_SSL'] = os.environ.get('MAIL_USE_SSL',
+                                            'False').lower() == 'true'
 app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME', 'info@moel.sa')
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
-app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER', 'info@moel.sa')
+app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER',
+                                                   'info@moel.sa')
 
 # Admin email for notifications
 app.config['ADMIN_EMAIL'] = os.environ.get('ADMIN_EMAIL', 'info@moel.sa')
@@ -182,14 +184,17 @@ def send_admin_notification(contact_message):
 
         # Connect to SMTP server
         if app.config['MAIL_USE_SSL']:
-            server = smtplib.SMTP_SSL(app.config['MAIL_SERVER'], app.config['MAIL_PORT'])
+            server = smtplib.SMTP_SSL(app.config['MAIL_SERVER'],
+                                      app.config['MAIL_PORT'])
         else:
-            server = smtplib.SMTP(app.config['MAIL_SERVER'], app.config['MAIL_PORT'])
+            server = smtplib.SMTP(app.config['MAIL_SERVER'],
+                                  app.config['MAIL_PORT'])
             if app.config['MAIL_USE_TLS']:
                 server.starttls()
-        
+
         if app.config['MAIL_USERNAME'] and app.config['MAIL_PASSWORD']:
-            server.login(app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
+            server.login(app.config['MAIL_USERNAME'],
+                         app.config['MAIL_PASSWORD'])
 
         # Send email
         text = msg.as_string()
@@ -226,14 +231,17 @@ def send_user_confirmation(contact_message):
 
         # Connect to SMTP server
         if app.config['MAIL_USE_SSL']:
-            server = smtplib.SMTP_SSL(app.config['MAIL_SERVER'], app.config['MAIL_PORT'])
+            server = smtplib.SMTP_SSL(app.config['MAIL_SERVER'],
+                                      app.config['MAIL_PORT'])
         else:
-            server = smtplib.SMTP(app.config['MAIL_SERVER'], app.config['MAIL_PORT'])
+            server = smtplib.SMTP(app.config['MAIL_SERVER'],
+                                  app.config['MAIL_PORT'])
             if app.config['MAIL_USE_TLS']:
                 server.starttls()
-        
+
         if app.config['MAIL_USERNAME'] and app.config['MAIL_PASSWORD']:
-            server.login(app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
+            server.login(app.config['MAIL_USERNAME'],
+                         app.config['MAIL_PASSWORD'])
 
         # Send email
         text = msg.as_string()
