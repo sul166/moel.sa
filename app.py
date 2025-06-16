@@ -36,21 +36,17 @@ app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
     "pool_pre_ping": True,
 }
 
-# Configure Flask-Mail for Gmail SMTP
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_USERNAME'] = os.environ.get('GMAIL_USERNAME',
-                                             'sultan.abdullah@gmail.com')
-app.config['MAIL_PASSWORD'] = os.environ.get('GMAIL_PASSWORD',
-                                             'buramvclojzauszn')
-app.config['MAIL_DEFAULT_SENDER'] = os.environ.get(
-    'GMAIL_USERNAME', 'sultan.abdullah@gmail.com')
+# Configure Flask-Mail for dmail.sa SMTP
+app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER', 'mail.dmail.sa')
+app.config['MAIL_PORT'] = int(os.environ.get('MAIL_PORT', 587))
+app.config['MAIL_USE_TLS'] = os.environ.get('MAIL_USE_TLS', 'True').lower() == 'true'
+app.config['MAIL_USE_SSL'] = os.environ.get('MAIL_USE_SSL', 'False').lower() == 'true'
+app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME', 'info@moel.sa')
+app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER', 'info@moel.sa')
 
 # Admin email for notifications
-app.config['ADMIN_EMAIL'] = os.environ.get('ADMIN_EMAIL',
-                                           'sultan.abdullah@gmail.com')
+app.config['ADMIN_EMAIL'] = os.environ.get('ADMIN_EMAIL', 'info@moel.sa')
 
 # Initialize extensions
 db.init_app(app)
