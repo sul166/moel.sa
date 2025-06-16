@@ -175,7 +175,7 @@ def send_admin_notification(contact_message):
         html_body = render_template('email/admin_notification.html',
                                     contact=contact_message)
 
-        # Send email using Gmail SMTP
+        # Send email using configured SMTP
         msg = MIMEMultipart('alternative')
         msg['Subject'] = subject
         msg['From'] = app.config['MAIL_DEFAULT_SENDER']
@@ -184,10 +184,16 @@ def send_admin_notification(contact_message):
         html_part = MIMEText(html_body, 'html', 'utf-8')
         msg.attach(html_part)
 
-        # Connect to Gmail SMTP server
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
+        # Connect to SMTP server
+        if app.config['MAIL_USE_SSL']:
+            server = smtplib.SMTP_SSL(app.config['MAIL_SERVER'], app.config['MAIL_PORT'])
+        else:
+            server = smtplib.SMTP(app.config['MAIL_SERVER'], app.config['MAIL_PORT'])
+            if app.config['MAIL_USE_TLS']:
+                server.starttls()
+        
+        if app.config['MAIL_USERNAME'] and app.config['MAIL_PASSWORD']:
+            server.login(app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
 
         # Send email
         text = msg.as_string()
@@ -213,7 +219,7 @@ def send_user_confirmation(contact_message):
         html_body = render_template('email/user_confirmation.html',
                                     contact=contact_message)
 
-        # Send email using Gmail SMTP
+        # Send email using configured SMTP
         msg = MIMEMultipart('alternative')
         msg['Subject'] = subject
         msg['From'] = app.config['MAIL_DEFAULT_SENDER']
@@ -222,10 +228,16 @@ def send_user_confirmation(contact_message):
         html_part = MIMEText(html_body, 'html', 'utf-8')
         msg.attach(html_part)
 
-        # Connect to Gmail SMTP server
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
+        # Connect to SMTP server
+        if app.config['MAIL_USE_SSL']:
+            server = smtplib.SMTP_SSL(app.config['MAIL_SERVER'], app.config['MAIL_PORT'])
+        else:
+            server = smtplib.SMTP(app.config['MAIL_SERVER'], app.config['MAIL_PORT'])
+            if app.config['MAIL_USE_TLS']:
+                server.starttls()
+        
+        if app.config['MAIL_USERNAME'] and app.config['MAIL_PASSWORD']:
+            server.login(app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
 
         # Send email
         text = msg.as_string()
